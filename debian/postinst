@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#DEBHELPER#
+
+# Set http server permissions
+chown -R www-data:www-data /var/www/carddavmate
+
+# Enable apache site
+/usr/sbin/a2ensite -q 050-carddavmate.conf
+
+:
