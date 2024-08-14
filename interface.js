@@ -651,7 +651,7 @@ function processEditorElements(inputEditorRef, processingType, inputIsReadonly, 
 	tmp_ref.find('input[data-type^="date_"]').prop('disabled', disabled || readonly);
 
 	// family name, given name, and organization name
-	var typeList=['family', 'given', 'middle', 'nickname', 'prefix', 'suffix', 'ph_firstname', 'ph_lastname', 'date_bday', 'tags', 'title', 'department', 'org'];
+	var typeList=['given', 'family', 'middle', 'nickname', 'prefix', 'suffix', 'ph_firstname', 'ph_lastname', 'date_bday', 'tags', 'title', 'department', 'org'];
 	for(var i=0; i<typeList.length; i++)
 	{
 		var elementRef = tmp_ref.find('[data-type="'+typeList[i]+'"]');

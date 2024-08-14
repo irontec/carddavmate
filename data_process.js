@@ -89,8 +89,8 @@ function dataToVcard(accountUID, inputUID, inputFilterUID, inputEtag)
 		process_elem=process_elem.replace('##:::##group_wd##:::##', '');
 		process_elem=process_elem.replace('##:::##params_wsc##:::##', '');
 	}
-	process_elem=process_elem.replace('##:::##family##:::##',vcardEscapeValue(tmpvCardEditorRef.find('[data-type="family"]').val()));
 	process_elem=process_elem.replace('##:::##given##:::##',vcardEscapeValue(tmpvCardEditorRef.find('[data-type="given"]').val()));
+	process_elem=process_elem.replace('##:::##family##:::##',vcardEscapeValue(tmpvCardEditorRef.find('[data-type="family"]').val()));
 	process_elem=process_elem.replace('##:::##middle##:::##',vcardEscapeValue(tmpvCardEditorRef.find('[data-type="middle"]').val()));
 	process_elem=process_elem.replace('##:::##prefix##:::##',vcardEscapeValue(tmpvCardEditorRef.find('[data-type="prefix"]').val()));
 	process_elem=process_elem.replace('##:::##suffix##:::##',vcardEscapeValue(tmpvCardEditorRef.find('[data-type="suffix"]').val()));
@@ -113,23 +113,23 @@ function dataToVcard(accountUID, inputUID, inputFilterUID, inputEtag)
 	for(var i=0;i<tmp.length;i++)
 	{
 		var tmp_found=false;
-		if(tmp[i].match(RegExp('surname|lastname|last|family','ig'))!=null)
+		if(tmp[i].match(RegExp('firstname|first|given','ig'))!=null)
 		{
 			if(parsed_value[0]=='')
 				tmp[i]='';
 			else
 			{
-				tmp[i]=tmp[i].replace(RegExp((!first_found ? '.*' : '')+'(surname|lastname|last|family)','ig'),parsed_value[0]);
+				tmp[i]=tmp[i].replace(RegExp((!first_found ? '.*' : '')+'(firstname|first|given)','ig'),parsed_value[0]);
 				first_found=true;
 			}
 		}
-		if(tmp[i].match(RegExp('firstname|first|given','ig'))!=null)
+		if(tmp[i].match(RegExp('surname|lastname|last|family','ig'))!=null)
 		{
 			if(parsed_value[1]=='')
 				tmp[i]='';
 			else
 			{
-				tmp[i]=tmp[i].replace(RegExp((!first_found ? '.*' : '')+'(firstname|first|given)','ig'),parsed_value[1]);
+				tmp[i]=tmp[i].replace(RegExp((!first_found ? '.*' : '')+'(surname|lastname|last|family)','ig'),parsed_value[1]);
 				first_found=true;
 			}
 		}
@@ -1464,7 +1464,7 @@ function vcardToData(inputContact, inputIsReadonly, inputIsCompany, inputEditorM
 		{
 			// parsed (contentline_parse) = [1]->"group.", [2]->"name", [3]->";param;param", [4]->"value"
 			parsed=vcard_element[0].match(vCard.pre['contentline_parse']);
-			// parsed_value = [0]->Family, [1]->Given, [2]->Middle, [3]->Prefix, [4]->Suffix
+			// parsed_value = [0]->Given, [1]->Family, [2]->Middle, [3]->Prefix, [4]->Suffix
 			parsed_value=vcardSplitValue(parsed[4],';');
 
 			if(parsed_value[0]!=undefined && parsed_value[0]!='')
