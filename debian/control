@@ -1,0 +1,15 @@
+Source: carddavmate
+Section: admin
+Priority: optional
+Build-Depends: debhelper (>=9.2), dpkg-dev, quilt
+Standards-Version: 3.9.6
+Maintainer: Irontec Comms Team <vozip@irontec.com>
+
+Package: carddavmate
+Architecture: all
+Section: admin
+Priority: optional
+Depends: apache2, php8.2-fpm
+Homepage: https://inf-it.com/open-source/clients/carddavmate/
+Description: CardDavMATE - Open source CardDAV web client implementation
+ .

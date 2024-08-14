@@ -1,0 +1,9 @@
+#!/usr/bin/make -f
+
+override_dh_install:
+	dh_install -X debian
+
+override_dh_strip_nondeterminism:
+
+%:
+	dh $@ --with quilt
