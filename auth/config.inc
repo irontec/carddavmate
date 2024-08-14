@@ -4,7 +4,7 @@
 
 	// set to true for debugging XML response, otherwise set to false to avoid browser
 	//  to show http authentication window after unsuccessful authentication
-	$config['auth_send_authenticate_header']=false;
+	$config['auth_send_authenticate_header']=true;
 
 	// successfull authentication XML specification (change the "http://www.server.com:80" to your protocol/server/port)
 	$config['accounts']=array('resources'=>array());
@@ -15,7 +15,7 @@
 	$config['accounts']['resources'][]=array(
 		'resource'=>array(
 			'type'=>array('addressbook'=>''),
-			'href'=>(empty($_SERVER['HTTPS']) ? 'http' : 'https').'://www.server.com:80/caldav.php/'.$_SERVER['PHP_AUTH_USER'].'/',
+			'href'=>(empty($_SERVER['HTTPS']) ? 'http' : 'https').'://'.$_SERVER['SERVER_NAME'].'/baikal/dav.php/principals/'.$_SERVER['PHP_AUTH_USER'].'/',
 			'hreflabel'=>'null',		// if undefined or empty href value is used (see above)
 			'forcereadonly'=>'null',	// see auth/doc/example_config_response.xml for proper use, for example: 'forcereadonly'=>array(array('collection'=>'/caldav.php/user/collection/'), array('collection'=>'re:^/caldav.php/user/collection[0-9]/$')),
 			'settingsaccount'=>'true',	// client properties are saved here (note: set it to true only for ONE account)

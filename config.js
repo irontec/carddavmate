@@ -287,7 +287,7 @@ var globalNetworkCheckSettings={
 	href: location.protocol+'//'+location.hostname+
 		(location.port ? ':'+location.port: '')+
 		location.pathname.replace(RegExp('/+[^/]+/*(index\.html)?$'),'')+
-		'/caldav.php/',
+		'/baikal/card.php/principals/',
 	timeOut: 90000,
 	lockTimeOut: 10000,
 	checkContentType: true,

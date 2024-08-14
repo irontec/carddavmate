@@ -1,6 +1,6 @@
 <?php
 	// Server base URL
-	$pluginconfig['base_url']=(empty($_SERVER['HTTPS']) ? 'http' : 'https').'://my.server.com:8080';
+	$pluginconfig['base_url']=(empty($_SERVER['HTTPS']) ? 'http' : 'https').'://' . $_SERVER['SERVER_NAME'] . "/baikal/";
 
 	// Default values are usually OK
 	//  for Davical:
