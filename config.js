@@ -420,7 +420,7 @@ var globalEnableKbNavigation=true;
 //   uk_UA (Українська [Ukrainian]; thanks Serge Yakimchuck)
 //   zh_CN (中国 [Chinese]; thanks Fandy)
 // Example:
-var globalInterfaceLanguage='en_US';
+var globalInterfaceLanguage='es_ES';
 
 
 // globalInterfaceCustomLanguages
