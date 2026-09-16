@@ -31,8 +31,17 @@ config:
 **`stripPrefixes` is not optional when the path is not `/`.** nginx serves from the root,
 so without it `index.html` and every asset under it is a 404. The client's own URLs are
 relative, so the browser keeps the prefix and Traefik takes it off on each request.
-Traefik only; the chart renders a `stripPrefix` Middleware and references it from the
-Ingress.
+Traefik only; the chart renders the Middlewares and references them from the Ingress.
+
+Two of them, and the second is why this needs saying. A prefix typed **without its
+trailing slash** — `/carddavmate` rather than `/carddavmate/` — answers `200` with the
+page, and then the browser resolves every relative asset URL one directory too high:
+`lib/jquery.js` becomes `/lib/jquery.js`, which is not this client. The page loads
+broken rather than failing, so the chart redirects to the slash first, ahead of the
+strip.
+
+The prefixes go into that redirect as a regex alternation, so one containing a `.`
+matches more than itself.
 
 ## `config.href` is a principal URL, not a collection
 
@@ -80,7 +89,7 @@ See [values.yaml](values.yaml). Notable ones:
 | Key | Default | Description |
 | --- | --- | --- |
 | `image.tag` | `""` | Defaults to the chart's `appVersion`. |
-| `ingress.stripPrefixes` | `[]` | Prefixes removed before nginx. Required when the path is not `/`. |
+| `ingress.stripPrefixes` | `[]` | Prefixes removed before nginx, each redirected to its trailing slash first. Required when the path is not `/`. |
 | `ingress.traefikApiVersion` | `traefik.io/v1alpha1` | `traefik.containo.us/v1alpha1` on Traefik v2. |
 | `config.href` | `""` | Principal URL without the user part. Empty keeps the same-origin default. |
 | `config.language` | `""` | e.g. `es_ES`. Empty keeps the client's default. |

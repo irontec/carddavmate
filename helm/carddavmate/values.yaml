@@ -42,6 +42,8 @@ ingress:
   # root. Set this to the path in `hosts` whenever that path is not `/`, or
   # every asset is a 404. The client's own URLs are relative, so the browser
   # keeps the prefix and Traefik takes it off each time. Traefik only.
+  # A prefix entered without its trailing slash is redirected to it first;
+  # treated as a regex, so a prefix with a `.` in it matches more than itself.
   stripPrefixes: []
   #  - /carddavmate
 

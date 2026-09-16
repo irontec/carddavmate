@@ -2,6 +2,22 @@
 apiVersion: {{ .Values.ingress.traefikApiVersion }}
 kind: Middleware
 metadata:
+  name: {{ include "carddavmate.fullname" . }}-slash
+  labels:
+    {{- include "carddavmate.labels" . | nindent 4 }}
+spec:
+  redirectRegex:
+    # A prefix without its trailing slash answers 200, and then the browser
+    # resolves the client's relative asset URLs one directory too high and every
+    # one of them 404s. Traefik matches the full URL, so scheme and host are
+    # captured and kept.
+    regex: '^(https?)://([^/]+)({{ join "|" .Values.ingress.stripPrefixes }})$'
+    replacement: '${1}://${2}${3}/'
+    permanent: true
+---
+apiVersion: {{ .Values.ingress.traefikApiVersion }}
+kind: Middleware
+metadata:
   name: {{ include "carddavmate.fullname" . }}-stripprefix
   labels:
     {{- include "carddavmate.labels" . | nindent 4 }}

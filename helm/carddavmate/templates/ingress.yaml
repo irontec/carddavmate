@@ -3,6 +3,7 @@
 {{- $svcPort := .Values.service.port -}}
 {{- $middlewares := default (list) .Values.ingress.traefikMiddlewares -}}
 {{- if .Values.ingress.stripPrefixes -}}
+{{- $middlewares = append $middlewares (printf "%s-%s-slash@kubernetescrd" .Release.Namespace $fullName) -}}
 {{- $middlewares = append $middlewares (printf "%s-%s-stripprefix@kubernetescrd" .Release.Namespace $fullName) -}}
 {{- end -}}
 apiVersion: networking.k8s.io/v1
