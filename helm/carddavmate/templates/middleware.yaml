@@ -1,0 +1,14 @@
+{{- if and .Values.ingress.enabled .Values.ingress.stripPrefixes }}
+apiVersion: {{ .Values.ingress.traefikApiVersion }}
+kind: Middleware
+metadata:
+  name: {{ include "carddavmate.fullname" . }}-stripprefix
+  labels:
+    {{- include "carddavmate.labels" . | nindent 4 }}
+spec:
+  stripPrefix:
+    # nginx serves from the root, so an unstripped prefix is a 404 on index.html
+    # and on every asset under it.
+    prefixes:
+      {{- toYaml .Values.ingress.stripPrefixes | nindent 6 }}
+{{- end }}
