@@ -1,0 +1,16 @@
+apiVersion: v2
+name: carddavmate
+description: CardDavMATE - CardDAV web client, served as static files
+type: application
+version: 0.1.0
+appVersion: "0.13.1"
+home: https://www.inf-it.com/open-source/clients/carddavmate/
+sources:
+  - https://github.com/irontec/carddavmate
+keywords:
+  - carddav
+  - contacts
+  - webmail
+maintainers:
+  - name: Irontec Comms Team
+    email: vozip@irontec.com

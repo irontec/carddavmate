@@ -1,0 +1,13 @@
+.git
+.github
+debian
+helm
+
+# PHP for setup type (c), which this image cannot run: nginx would serve the
+# sources as plain text, config.inc and the LDAP plugin included.
+auth
+
+# HTML5 AppCache, removed from every current browser. The Dockerfile drops the
+# manifest attribute and the handler; these would only ever be dead weight.
+cache.manifest
+cache_update.sh
